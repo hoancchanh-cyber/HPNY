@@ -4,14 +4,94 @@
 <meta charset="UTF-8">
 <title>TT PVHCC Xã Ngô Mây – Chúc Tết 2026</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/style.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f4f4;
+  color:#333;
+}
+
+/* HEADER */
+header{
+  background:#2f4f2f;
+  color:#fff;
+  padding:15px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.logo{font-weight:bold}
+nav a{
+  color:#fff;
+  text-decoration:none;
+  margin-left:15px;
+  padding:6px 12px;
+  border-radius:20px;
+  transition:.3s;
+}
+nav a:hover{
+  background:#ffd84d;
+  color:#2f4f2f;
+}
+
+/* HERO */
+.hero{
+  min-height:80vh;
+  background:linear-gradient(#b30000,#3a0000);
+  color:#ffd84d;
+  text-align:center;
+  padding:60px 20px;
+}
+.hero h1{font-size:42px}
+.hero h2{font-size:64px;margin:15px 0}
+.hero p{font-size:18px;line-height:1.6}
+
+.wish{
+  margin:25px 0;
+  font-size:22px;
+  color:#fff;
+}
+
+/* BUTTON */
+.btn{
+  display:inline-block;
+  background:#ffd84d;
+  color:#9b0000;
+  padding:12px 28px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+  transition:.3s;
+}
+.btn:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 15px gold;
+}
+
+/* FOOTER */
+footer{
+  background:#2f4f2f;
+  color:#fff;
+  text-align:center;
+  padding:15px;
+}
+
+@media(max-width:768px){
+  .hero h1{font-size:28px}
+  .hero h2{font-size:44px}
+}
+</style>
 </head>
 
 <body>
+
 <header>
   <div class="logo">TT PVHCC XÃ NGÔ MÂY</div>
   <nav>
-    <a href="index.html" class="active">Trang chủ</a>
+    <a href="index.html">Trang chủ</a>
     <a href="loc-dau-nam.html">Xốc quẻ đầu năm</a>
   </nav>
 </header>
@@ -36,5 +116,6 @@
 <footer>
   © 2026 – Trung tâm Phục vụ Hành chính công xã Ngô Mây
 </footer>
+
 </body>
 </html>
