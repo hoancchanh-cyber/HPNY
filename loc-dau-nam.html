@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Xốc Quẻ Đầu Năm – Bính Ngọ 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(#8b0000,#3a0000);
+  color:#ffd84d;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* HEADER */
+header{
+  background:#a40000;
+  color:#fff;
+  padding:15px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+header a{
+  color:#fff;
+  text-decoration:none;
+  margin-left:20px;
+  padding:6px 14px;
+  border-radius:20px;
+  transition:.3s;
+}
+header a:hover,
+header a.active{
+  background:#ffd84d;
+  color:#8b0000;
+}
+
+/* MAIN */
+main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:40px 20px;
+}
+
+main h1{
+  font-size:46px;
+  margin-bottom:10px;
+}
+main p{
+  font-size:18px;
+  color:#fff;
+}
+
+/* BUTTON */
+button{
+  margin-top:30px;
+  background:#ffd84d;
+  color:#8b0000;
+  border:none;
+  padding:16px 40px;
+  font-size:22px;
+  font-weight:bold;
+  border-radius:40px;
+  cursor:pointer;
+  transition:.3s;
+}
+button:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 20px gold;
+}
+
+/* RESULT */
+#result{
+  margin-top:40px;
+  font-size:26px;
+  color:#fff;
+  opacity:0;
+  transition:.6s;
+  max-width:700px;
+}
+#result.show{
+  opacity:1;
+}
+
+/* FOOTER */
+footer{
+  background:#a40000;
+  color:#fff;
+  text-align:center;
+  padding:15px;
+}
+
+@media(max-width:768px){
+  main h1{font-size:32px}
+  button{font-size:18px}
+  #result{font-size:20px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div><strong>TT PVHCC XÃ NGÔ MÂY</strong></div>
+  <nav>
+    <a href="index.html">Trang chủ</a>
+    <a href="loc-dau-nam.html" class="active">Xốc quẻ đầu năm</a>
+  </nav>
+</header>
+
+<main>
+  <h1>🎋 XỐC QUẺ ĐẦU NĂM 🎋</h1>
+  <p>Nhấn nút bên dưới để nhận lời chúc may mắn đầu xuân</p>
+
+  <button onclick="shake()">XỐC QUẺ LẤY LỘC</button>
+
+  <div id="result"></div>
+</main>
+
+<footer>
+  © 2026 – Trung tâm Phục vụ Hành chính công xã Ngô Mây
+</footer>
+
+<script>
+const fortunes = [
+  "🌸 Đại cát đại lợi – Công việc hanh thông, thuận lợi.",
+  "🌸 Gia đình hạnh phúc – Bình an là phúc lớn nhất.",
+  "🌸 Sức khỏe dồi dào – Mọi sự khởi đầu tốt đẹp.",
+  "🌸 Kiên trì bền chí – Thành công sẽ đến trong năm nay.",
+  "🌸 Đồng thuận – Đoàn kết – Hoàn thành tốt nhiệm vụ.",
+  "🌸 Tài lộc đủ đầy – Cuộc sống ấm no, hạnh phúc."
+];
+
+function shake(){
+  const r = document.getElementById("result");
+  r.classList.remove("show");
+  setTimeout(()=>{
+    r.innerHTML = fortunes[Math.floor(Math.random()*fortunes.length)];
+    r.classList.add("show");
+  },300);
+}
+</script>
+
+</body>
+</html>
