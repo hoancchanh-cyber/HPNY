@@ -30,10 +30,6 @@
       opacity: 0; 
       animation: fadeUp 1s forwards; 
     }
-    .greeting .wish { 
-      opacity: 0; 
-      animation: fadeUp 1s forwards, sparkle 2s infinite; 
-    }
     @keyframes fadeUp { 
       from { transform: translateY(20px); opacity: 0; } 
       to { transform: translateY(0); opacity: 1; } 
@@ -41,6 +37,19 @@
     @keyframes sparkle { 
       0%, 100% { text-shadow: 0 0 8px #fff796; } 
       50% { text-shadow: 0 0 14px #ffd84d; } 
+    }
+    /* Hiệu ứng nhấp nháy nhẹ cho chữ chúc mừng lớn */
+    @keyframes nhapnhay {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: 0.5; }  /* mờ đi một chút, không tắt hẳn */
+    }
+    .greeting .wish { 
+      opacity: 0; 
+      animation: 
+        fadeUp 1s forwards, 
+        sparkle 2s infinite, 
+        nhapnhay 2.5s ease-in-out infinite;
+      animation-delay: 1.5s, 1.5s, 2.5s; /* delay để fadeUp xong rồi mới nhấp nháy */
     }
     .countdown-card { 
       background: rgba(255,255,255,0.15); 
@@ -197,47 +206,8 @@
       explode(Math.random() * canvas.width * 0.8 + canvas.width * 0.1, Math.random() * canvas.height * 0.35 + canvas.height * 0.1);
     }, isMobile ? 1600 : 1100);
 
-    // ===== SNOWFALL =====
-    // Nếu bạn có code tuyết rơi, paste vào đây
-    // Ví dụ đơn giản (nếu chưa có, bạn có thể dùng cái này tạm):
-    /*
-    const snowCanvas = document.getElementById("snowCanvas");
-    const snowCtx = snowCanvas.getContext("2d");
-    function resizeSnow() { snowCanvas.width = innerWidth; snowCanvas.height = innerHeight; }
-    window.addEventListener("resize", resizeSnow); resizeSnow();
-
-    class Snowflake {
-      constructor() {
-        this.x = Math.random() * snowCanvas.width;
-        this.y = Math.random() * -snowCanvas.height;
-        this.size = Math.random() * 4 + 2;
-        this.speed = Math.random() * 1 + 0.5;
-      }
-      update() {
-        this.y += this.speed;
-        if (this.y > snowCanvas.height) this.y = -10;
-      }
-      draw() {
-        snowCtx.fillStyle = "white";
-        snowCtx.beginPath();
-        snowCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        snowCtx.fill();
-      }
-    }
-
-    let snowflakes = [];
-    for (let i = 0; i < 100; i++) snowflakes.push(new Snowflake());
-
-    function animateSnow() {
-      snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
-      snowflakes.forEach(s => { s.update(); s.draw(); });
-      requestAnimationFrame(animateSnow);
-    }
-    animateSnow();
-    */
-
     // ===== COUNTDOWN =====
-    const tetTime = new Date("2026-02-16T00:00:00+07:00").getTime(); // Cố định +07:00 cho VN
+    const tetTime = new Date("2026-02-16T00:00:00+07:00").getTime();
     const daysEl = document.getElementById("days");
     const hoursEl = document.getElementById("hours");
     const minutesEl = document.getElementById("minutes");
@@ -248,7 +218,6 @@
       if (dist <= 0) {
         document.querySelector(".count-title").innerHTML = "🎉 CHÚC MỪNG NĂM MỚI BÍNH NGỌ 2026 🎉";
         daysEl.innerHTML = hoursEl.innerHTML = minutesEl.innerHTML = secondsEl.innerHTML = "00";
-        // Bắn pháo hoa mạnh hơn khi hết
         for (let i = 0; i < 5; i++) {
           explode(Math.random() * canvas.width, Math.random() * canvas.height * 0.4);
         }
