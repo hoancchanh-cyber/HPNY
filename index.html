@@ -38,10 +38,9 @@
       0%, 100% { text-shadow: 0 0 8px #fff796; } 
       50% { text-shadow: 0 0 14px #ffd84d; } 
     }
-    /* Hiệu ứng nhấp nháy nhẹ cho chữ chúc mừng lớn */
     @keyframes nhapnhay {
       0%, 100% { opacity: 1; }
-      50%      { opacity: 0.5; }  /* mờ đi một chút, không tắt hẳn */
+      50%      { opacity: 0.5; }
     }
     .greeting .wish { 
       opacity: 0; 
@@ -49,7 +48,7 @@
         fadeUp 1s forwards, 
         sparkle 2s infinite, 
         nhapnhay 2.5s ease-in-out infinite;
-      animation-delay: 1.5s, 1.5s, 2.5s; /* delay để fadeUp xong rồi mới nhấp nháy */
+      animation-delay: 1.5s, 1.5s, 2.5s;
     }
     .countdown-card { 
       background: rgba(255,255,255,0.15); 
@@ -108,7 +107,7 @@
       <p class="fs-4 fw-bold line mb-4">ĐÓN TẾT BÍNH NGỌ</p>
       <div class="wish display-5 fw-bold my-4">🌸 AN KHANG THỊNH VƯỢNG – VẠN SỰ NHƯ Ý 🌸</div>
 
-      <!-- Countdown -->
+      <!-- Countdown (sẽ ẩn khi hết giờ) -->
       <div class="countdown mt-5">
         <h5 class="fw-bold mb-4 count-title">⏳ ĐẾM NGƯỢC ĐẾN GIAO THỪA</h5>
         <div class="row justify-content-center g-3 g-md-4">
@@ -212,22 +211,37 @@
     const hoursEl = document.getElementById("hours");
     const minutesEl = document.getElementById("minutes");
     const secondsEl = document.getElementById("seconds");
+    const countdownContainer = document.querySelector(".countdown");
 
     function countdown() {
       const dist = tetTime - Date.now();
+
       if (dist <= 0) {
-        document.querySelector(".count-title").innerHTML = "🎉 CHÚC MỪNG NĂM MỚI BÍNH NGỌ 2026 🎉";
-        daysEl.innerHTML = hoursEl.innerHTML = minutesEl.innerHTML = secondsEl.innerHTML = "00";
-        for (let i = 0; i < 5; i++) {
-          explode(Math.random() * canvas.width, Math.random() * canvas.height * 0.4);
+        // Ẩn toàn bộ phần countdown
+        if (countdownContainer) {
+          countdownContainer.style.display = "none";
         }
+
+        // Bắn pháo hoa chào mừng giao thừa (tăng hiệu ứng)
+        for (let i = 0; i < 8; i++) {
+          setTimeout(() => {
+            explode(
+              Math.random() * canvas.width,
+              Math.random() * canvas.height * 0.5
+            );
+          }, i * 300);
+        }
+
         return;
       }
+
+      // Cập nhật thời gian còn lại
       daysEl.innerHTML = Math.floor(dist / 86400000).toString().padStart(2, '0');
       hoursEl.innerHTML = Math.floor((dist % 86400000) / 3600000).toString().padStart(2, '0');
       minutesEl.innerHTML = Math.floor((dist % 3600000) / 60000).toString().padStart(2, '0');
       secondsEl.innerHTML = Math.floor((dist % 60000) / 1000).toString().padStart(2, '0');
     }
+
     setInterval(countdown, 1000);
     countdown();
 
